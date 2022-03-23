@@ -3,14 +3,12 @@ package com.example.rickandmorty.ui.fragments.location
 
 import android.util.Log
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.rickandmorty.R
 import com.example.rickandmorty.base.BaseFragment
 import com.example.rickandmorty.common.resource.Resource
 import com.example.rickandmorty.databinding.FragmentLocationBinding
-import com.example.rickandmorty.ui.adapters.CharacterAdapter
 import com.example.rickandmorty.ui.adapters.LocationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,10 +1,8 @@
 package com.example.rickandmorty.data.repositories
 
 import androidx.lifecycle.liveData
-import com.bumptech.glide.load.engine.Resource
 import com.example.rickandmorty.data.remote.apiservice.LocationApiService
 import kotlinx.coroutines.Dispatchers
-import okhttp3.Dispatcher
 import java.lang.Exception
 import javax.inject.Inject
 

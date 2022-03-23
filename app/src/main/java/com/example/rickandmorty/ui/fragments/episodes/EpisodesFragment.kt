@@ -1,11 +1,6 @@
 package com.example.rickandmorty.ui.fragments.episodes
 
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -14,7 +9,9 @@ import com.example.rickandmorty.base.BaseFragment
 import com.example.rickandmorty.common.resource.Resource
 import com.example.rickandmorty.databinding.FragmentEpisodesBinding
 import com.example.rickandmorty.ui.adapters.EpisodesAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EpisodesFragment : BaseFragment<FragmentEpisodesBinding, EpisodesViewModel>(
     R.layout.fragment_episodes
 ) {

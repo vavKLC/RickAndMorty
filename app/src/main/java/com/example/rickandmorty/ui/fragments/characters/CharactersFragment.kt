@@ -25,7 +25,7 @@ class CharactersFragment(
     }
 
     private fun setupAdapter() {
-      //  binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = characterAdapter
     }
 

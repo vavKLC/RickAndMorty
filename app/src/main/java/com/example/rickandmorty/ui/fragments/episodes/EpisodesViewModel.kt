@@ -6,6 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class EpisodesViewModel @Inject constructor(val repository: EpisodesRepository) : BaseViewModel() {
+class EpisodesViewModel @Inject constructor(
+    val repository: EpisodesRepository
+) : BaseViewModel() {
+
     fun fetchEpisodes() = repository.fetchEpisodes()
 }
