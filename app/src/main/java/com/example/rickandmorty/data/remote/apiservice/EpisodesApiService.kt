@@ -9,4 +9,5 @@ interface EpisodesApiService {
     @GET("api/episode")
     suspend fun fetchEpisodes() : RickAndMortyResponse<RickAndMortyEpisodes>
     
+   
 }
