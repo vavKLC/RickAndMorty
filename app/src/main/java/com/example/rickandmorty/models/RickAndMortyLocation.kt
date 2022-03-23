@@ -1,7 +1,6 @@
 package com.example.rickandmorty.models
 
-data class RickAndMortyCharacters(
-
+data class RickAndMortyLocation(
     val name : String ,
-    val image : String
+    val type : String
 )

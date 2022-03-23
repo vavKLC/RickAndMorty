@@ -10,4 +10,14 @@
         android:name="com.example.rickandmorty.ui.fragments.characters.CharactersFragment"
         android:label="fragment_characters"
         tools:layout="@layout/fragment_characters" />
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.rickandmorty.ui.fragments.location.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/episodesFragment2"
+        android:name="com.example.rickandmorty.ui.fragments.episodes.EpisodesFragment"
+        android:label="fragment_episodes"
+        tools:layout="@layout/fragment_episodes" />
 </navigation>

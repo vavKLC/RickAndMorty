@@ -18,4 +18,14 @@ object NetworkModule {
     @Provides
     fun provideCharacterApiService() =
         retrofitClient.provideCharacterApiService()
+
+    @Singleton
+    @Provides
+    fun provideLocationApiService() =
+        retrofitClient.provideLocationApiService()
+
+    @Singleton
+    @Provides
+    fun provideEpisodesApiService()=
+        retrofitClient.provideEpisodesApiService()
 }

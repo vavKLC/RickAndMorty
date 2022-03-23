@@ -13,8 +13,8 @@ class CharacterRepository @Inject constructor(private val service: CharacterApiS
         emit(Resource.Loading())
         try {
             emit(Resource.Success(service.fetchCharacters()))
-        } catch (ioException : Exception){
-            emit(Resource.Error(ioException.localizedMessage , null))
+        } catch (ioException: Exception) {
+            emit(Resource.Error(ioException.localizedMessage, null))
         }
     }
 }
