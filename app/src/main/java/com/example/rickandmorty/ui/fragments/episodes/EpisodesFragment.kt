@@ -45,7 +45,7 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding, EpisodesViewModel
                     Log.e("not good" , it.message.toString())
                 }
                 is Resource.Success -> {
-                    it.data?.result?.let { it1 -> episodesAdapter.setList(it1) }
+                    it.data?.results?.let { it1 -> episodesAdapter.setList(it1) }
                 }
             }
         }

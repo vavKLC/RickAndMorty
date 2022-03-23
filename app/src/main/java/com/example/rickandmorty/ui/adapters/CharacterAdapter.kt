@@ -10,7 +10,9 @@ import com.example.rickandmorty.models.RickAndMortyCharacters
 
 class CharacterAdapter :
     RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+
     private var list: List<RickAndMortyCharacters> = ArrayList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder =
         CharacterViewHolder(
             ItemCharacterBinding.inflate(

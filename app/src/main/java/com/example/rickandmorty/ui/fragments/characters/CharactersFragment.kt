@@ -25,7 +25,7 @@ class CharactersFragment(
     }
 
     private fun setupAdapter() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+      //  binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = characterAdapter
     }
 
@@ -43,7 +43,9 @@ class CharactersFragment(
                     Log.e("Anime " , it.message.toString())
                 }
                 is Resource.Success ->{
-                    it.data?.result?.let { it1 -> characterAdapter.setList(it1) }
+                    Log.e("anime" , "Success")
+
+                    it.data?.results?.let {characterAdapter.setList(it) }
                 }
             }
         }
