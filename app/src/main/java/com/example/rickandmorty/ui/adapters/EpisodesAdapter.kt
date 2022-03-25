@@ -2,13 +2,17 @@ package com.example.rickandmorty.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.ItemEpisodeBinding
+import com.example.rickandmorty.models.RickAndMortyCharacters
 import com.example.rickandmorty.models.RickAndMortyEpisodes
 
 class EpisodesAdapter :
-    RecyclerView.Adapter<EpisodesAdapter.EpisodesViewHolder>() {
-    private var list: List<RickAndMortyEpisodes> = ArrayList()
+    PagingDataAdapter< RickAndMortyEpisodes,EpisodesAdapter.EpisodesViewHolder>(
+        EpisodeComparator
+    ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodesViewHolder =
         EpisodesViewHolder(
             ItemEpisodeBinding.inflate(
@@ -19,22 +23,33 @@ class EpisodesAdapter :
         )
 
     override fun onBindViewHolder(holder: EpisodesViewHolder, position: Int) {
-        holder.onBind(list[position])
+        getItem(position)?.let {
+            holder.onBind(it)
+        }
     }
 
-    fun setList(list: List<RickAndMortyEpisodes>){
-        this.list = list
-    }
-
-    override fun getItemCount(): Int = list.size
 
     class EpisodesViewHolder(val binding: ItemEpisodeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: RickAndMortyEpisodes) {
-            binding.tvEpisodeName.text = data.episode
-            binding.tvAirDate.text = data.date
-            binding.tvEpisodeCode.text = data.code
+            binding.tvEpisodeName.text = data.name
+            binding.tvAirDate.text = data.air_date
+            binding.tvEpisodeCode.text = data.episode_code
         }
 
     }
+}
+object EpisodeComparator : DiffUtil.ItemCallback<RickAndMortyEpisodes>() {
+    override fun areItemsTheSame(
+        oldItem: RickAndMortyEpisodes,
+        newItem: RickAndMortyEpisodes
+    ): Boolean =
+        oldItem.id == newItem.id
+
+    override fun areContentsTheSame(
+        oldItem: RickAndMortyEpisodes,
+        newItem: RickAndMortyEpisodes
+    ): Boolean =
+        oldItem == newItem
+
 }

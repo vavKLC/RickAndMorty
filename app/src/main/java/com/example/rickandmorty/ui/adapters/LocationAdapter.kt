@@ -2,14 +2,18 @@ package com.example.rickandmorty.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.ItemCharacterBinding
 import com.example.rickandmorty.databinding.ItemLocationBinding
+import com.example.rickandmorty.models.RickAndMortyCharacters
 import com.example.rickandmorty.models.RickAndMortyLocation
 
 class LocationAdapter :
-    RecyclerView.Adapter<LocationAdapter.LocationViewHolder>() {
-    private var list : List<RickAndMortyLocation> = ArrayList()
+    PagingDataAdapter<RickAndMortyLocation,LocationAdapter.LocationViewHolder>(
+        LocationComparator
+    ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder =
         LocationViewHolder(
             ItemLocationBinding.inflate(
@@ -20,15 +24,12 @@ class LocationAdapter :
         )
 
     override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
-        holder.onBind(list[position])
+        getItem(position)?.let {
+            holder.onBind(it)
+        }
     }
 
-    fun setList(list : List<RickAndMortyLocation>){
-        this.list = list
-        notifyDataSetChanged()
-    }
 
-    override fun getItemCount(): Int = list.size
 
     class LocationViewHolder(private val binding: ItemLocationBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -38,6 +39,20 @@ class LocationAdapter :
         }
 
     }
+
+}
+object LocationComparator : DiffUtil.ItemCallback<RickAndMortyLocation>() {
+    override fun areItemsTheSame(
+        oldItem: RickAndMortyLocation,
+        newItem: RickAndMortyLocation
+    ): Boolean =
+        oldItem.id == newItem.id
+
+    override fun areContentsTheSame(
+        oldItem: RickAndMortyLocation,
+        newItem: RickAndMortyLocation
+    ): Boolean =
+        oldItem == newItem
 
 }
 

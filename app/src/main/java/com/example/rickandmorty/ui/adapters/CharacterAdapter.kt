@@ -2,6 +2,9 @@ package com.example.rickandmorty.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.LoadState
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.common.extensions.setImage
@@ -9,9 +12,10 @@ import com.example.rickandmorty.databinding.ItemCharacterBinding
 import com.example.rickandmorty.models.RickAndMortyCharacters
 
 class CharacterAdapter :
-    RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+    PagingDataAdapter<RickAndMortyCharacters, CharacterAdapter.CharacterViewHolder>(
+        CharacterComparator
+    ) {
 
-    private var list: List<RickAndMortyCharacters> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder =
         CharacterViewHolder(
@@ -23,24 +27,32 @@ class CharacterAdapter :
         )
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        holder.onBind(list[position])
+        getItem(position)?.let {
+            holder.onBind(it)
+        }
     }
 
-    override fun getItemCount() = list.size
 
-    fun setList(list: List<RickAndMortyCharacters>) {
-        this.list = list
-        notifyDataSetChanged()
-    }
-
-    class CharacterViewHolder(private val binding: ItemCharacterBinding) :
+    inner class CharacterViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: RickAndMortyCharacters) {
             binding.imageChar.setImage(data.image)
             binding.nameTv.text = data.name
         }
-
     }
+}
 
+object CharacterComparator : DiffUtil.ItemCallback<RickAndMortyCharacters>() {
+    override fun areItemsTheSame(
+        oldItem: RickAndMortyCharacters,
+        newItem: RickAndMortyCharacters
+    ): Boolean =
+        oldItem.id == newItem.id
+
+    override fun areContentsTheSame(
+        oldItem: RickAndMortyCharacters,
+        newItem: RickAndMortyCharacters
+    ): Boolean =
+        oldItem == newItem
 
 }

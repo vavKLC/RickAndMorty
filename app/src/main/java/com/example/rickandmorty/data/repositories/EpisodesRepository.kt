@@ -1,20 +1,17 @@
 package com.example.rickandmorty.data.repositories
 
-import androidx.lifecycle.liveData
-import com.example.rickandmorty.common.resource.Resource
+
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.example.rickandmorty.data.remote.apiservice.EpisodesApiService
-import kotlinx.coroutines.Dispatchers
-import java.lang.Exception
+import com.example.rickandmorty.data.remote.pagingsources.EpisodePagingSource
 import javax.inject.Inject
 
-class EpisodesRepository @Inject constructor(val service: EpisodesApiService) {
+class EpisodesRepository @Inject constructor(private val service: EpisodesApiService) {
 
-    fun fetchEpisodes() = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
-        try {
-            emit(Resource.Success(service.fetchEpisodes()))
-        } catch (ioException: Exception){
-            emit(Resource.Error(ioException.localizedMessage , null))
-        }
-    }
+    fun fetchEpisodes() = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        EpisodePagingSource(service)
+    }.flow
 }
