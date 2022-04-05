@@ -1,14 +1,35 @@
 package com.example.rickandmorty.ui.fragments.location
 
-import androidx.lifecycle.viewModelScope
-import androidx.paging.cachedIn
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.base.BaseViewModel
 import com.example.rickandmorty.data.repositories.LocationRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import com.example.rickandmorty.models.RickAndMortyLocation
+import com.example.rickandmorty.models.RickAndMortyResponse
 
-@HiltViewModel
-class LocationViewModel @Inject constructor(private val repository: LocationRepository) :
+
+class LocationViewModel  constructor(private val repository: LocationRepository) :
     BaseViewModel() {
-        fun fetchLocations() = repository.fetchLocations().cachedIn(viewModelScope)
+    var page = 1
+    var isLoading : Boolean = false
+
+    private val _locationState = MutableLiveData<RickAndMortyResponse<RickAndMortyLocation>>()
+    val locationState: LiveData<RickAndMortyResponse<RickAndMortyLocation>> = _locationState
+
+    private val _locationLocaleState = MutableLiveData<List<RickAndMortyLocation>>()
+    val locationLocaleState: LiveData<List<RickAndMortyLocation>> = _locationLocaleState
+
+    fun fetchLocations() {
+        isLoading = true
+        repository.fetchLocations(page).collect(_locationState){
+            page++
+            isLoading = false
+        }
+    }
+
+
+    fun getLocations() = repository.getLocations().collect(
+        _locationLocaleState
+
+    )
 }

@@ -1,17 +1,23 @@
 package com.example.rickandmorty.data.repositories
 
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
+import com.example.rickandmorty.base.BaseRepository
+import com.example.rickandmorty.data.local.db.daos.EpisodeDao
 import com.example.rickandmorty.data.remote.apiservice.EpisodesApiService
-import com.example.rickandmorty.data.remote.pagingsources.EpisodePagingSource
-import javax.inject.Inject
 
-class EpisodesRepository @Inject constructor(private val service: EpisodesApiService) {
+class EpisodesRepository  constructor(
+    private val service: EpisodesApiService,
+    private val episodeDao: EpisodeDao
+) : BaseRepository() {
 
-    fun fetchEpisodes() = Pager(
-        PagingConfig(pageSize = 20)
-    ) {
-        EpisodePagingSource(service)
-    }.flow
+    fun fetchEpisodes(page: Int) = doRequest(
+        { service.fetchEpisodes(page) },
+        { episode ->
+            episodeDao.insertEpisode(*episode.results.toTypedArray())
+        }
+    )
+
+    fun getCharacters() = doRequest {
+        episodeDao.getEpisode()
+    }
 }

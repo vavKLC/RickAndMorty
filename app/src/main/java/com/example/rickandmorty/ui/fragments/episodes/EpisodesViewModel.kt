@@ -1,16 +1,37 @@
 package com.example.rickandmorty.ui.fragments.episodes
 
-import androidx.lifecycle.viewModelScope
-import androidx.paging.cachedIn
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.base.BaseViewModel
 import com.example.rickandmorty.data.repositories.EpisodesRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import com.example.rickandmorty.models.RickAndMortyEpisodes
+import com.example.rickandmorty.models.RickAndMortyResponse
 
-@HiltViewModel
-class EpisodesViewModel @Inject constructor(
+class EpisodesViewModel constructor(
     val repository: EpisodesRepository
 ) : BaseViewModel() {
 
-    fun fetchEpisodes() = repository.fetchEpisodes().cachedIn(viewModelScope)
+    var page = 1
+    var isLoading : Boolean = false
+
+    private val _episodeState = MutableLiveData<RickAndMortyResponse<RickAndMortyEpisodes>>()
+    val episodeState: LiveData<RickAndMortyResponse<RickAndMortyEpisodes>> = _episodeState
+
+    private val _episodeLocaleState = MutableLiveData<List<RickAndMortyEpisodes>>()
+    val episodeLocaleState: LiveData<List<RickAndMortyEpisodes>> = _episodeLocaleState
+
+    fun fetchEpisodes() {
+        isLoading = true
+        repository.fetchEpisodes(page).collect(_episodeState){
+            page++
+            isLoading = false
+        }
+    }
+
+
+    fun getEpisodes() = repository.getCharacters().collect(
+        _episodeLocaleState
+
+    )
+
 }

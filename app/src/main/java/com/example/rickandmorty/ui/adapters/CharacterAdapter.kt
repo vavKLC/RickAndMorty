@@ -2,9 +2,8 @@ package com.example.rickandmorty.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.LoadState
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.common.extensions.setImage
@@ -12,10 +11,9 @@ import com.example.rickandmorty.databinding.ItemCharacterBinding
 import com.example.rickandmorty.models.RickAndMortyCharacters
 
 class CharacterAdapter :
-    PagingDataAdapter<RickAndMortyCharacters, CharacterAdapter.CharacterViewHolder>(
+    ListAdapter<RickAndMortyCharacters, CharacterAdapter.CharacterViewHolder>(
         CharacterComparator
     ) {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder =
         CharacterViewHolder(
@@ -38,6 +36,8 @@ class CharacterAdapter :
         fun onBind(data: RickAndMortyCharacters) {
             binding.imageChar.setImage(data.image)
             binding.nameTv.text = data.name
+
+
         }
     }
 }
