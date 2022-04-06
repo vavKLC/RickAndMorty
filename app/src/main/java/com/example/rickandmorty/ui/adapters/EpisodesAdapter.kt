@@ -9,7 +9,7 @@ import com.example.rickandmorty.databinding.ItemEpisodeBinding
 import com.example.rickandmorty.models.RickAndMortyEpisodes
 
 class EpisodesAdapter :
-    ListAdapter< RickAndMortyEpisodes,EpisodesAdapter.EpisodesViewHolder>(
+    ListAdapter<RickAndMortyEpisodes, EpisodesAdapter.EpisodesViewHolder>(
         EpisodeComparator
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodesViewHolder =
@@ -38,6 +38,7 @@ class EpisodesAdapter :
 
     }
 }
+
 object EpisodeComparator : DiffUtil.ItemCallback<RickAndMortyEpisodes>() {
     override fun areItemsTheSame(
         oldItem: RickAndMortyEpisodes,

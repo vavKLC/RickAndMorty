@@ -23,7 +23,7 @@ class CharactersViewModel constructor(
 
     fun fetchCharacters() {
         isLoading = true
-        repository.fetchCharacters(page).collect(_characterState){
+        repository.fetchCharacters(page).collect(_characterState) {
             page++
             isLoading = false
         }

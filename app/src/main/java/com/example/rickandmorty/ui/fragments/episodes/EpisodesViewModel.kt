@@ -12,7 +12,7 @@ class EpisodesViewModel constructor(
 ) : BaseViewModel() {
 
     var page = 1
-    var isLoading : Boolean = false
+    var isLoading: Boolean = false
 
     private val _episodeState = MutableLiveData<RickAndMortyResponse<RickAndMortyEpisodes>>()
     val episodeState: LiveData<RickAndMortyResponse<RickAndMortyEpisodes>> = _episodeState
@@ -22,7 +22,7 @@ class EpisodesViewModel constructor(
 
     fun fetchEpisodes() {
         isLoading = true
-        repository.fetchEpisodes(page).collect(_episodeState){
+        repository.fetchEpisodes(page).collect(_episodeState) {
             page++
             isLoading = false
         }

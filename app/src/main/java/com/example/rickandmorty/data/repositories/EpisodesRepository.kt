@@ -5,7 +5,7 @@ import com.example.rickandmorty.base.BaseRepository
 import com.example.rickandmorty.data.local.db.daos.EpisodeDao
 import com.example.rickandmorty.data.remote.apiservice.EpisodesApiService
 
-class EpisodesRepository  constructor(
+class EpisodesRepository constructor(
     private val service: EpisodesApiService,
     private val episodeDao: EpisodeDao
 ) : BaseRepository() {

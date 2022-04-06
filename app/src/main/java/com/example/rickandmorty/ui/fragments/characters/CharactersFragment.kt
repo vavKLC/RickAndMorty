@@ -30,7 +30,7 @@ class CharactersFragment :
         adapter = characterAdapter
 
         addOnScrollListener(object : PaginationScrollListener(linearLayoutManager, {
-            if(isOnline()){
+            if (isOnline()) {
                 viewModel.fetchCharacters()
             }
         }) {
@@ -44,15 +44,15 @@ class CharactersFragment :
     }
 
     private fun subscribeToCharactersLocal() {
-            viewModel.characterLocaleState.observe(viewLifecycleOwner) {
-                characterAdapter.submitData(it)
-            }
+        viewModel.characterLocaleState.observe(viewLifecycleOwner) {
+            characterAdapter.submitData(it)
+        }
 
     }
 
     override fun setupRequests() {
         if (viewModel.characterState.value == null && isOnline()) viewModel.fetchCharacters()
-        else    viewModel.getCharacters()
+        else viewModel.getCharacters()
     }
 
     private fun isOnline(): Boolean {

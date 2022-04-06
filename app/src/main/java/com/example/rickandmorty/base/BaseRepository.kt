@@ -3,7 +3,6 @@ package com.example.rickandmorty.base
 import com.example.rickandmorty.common.resource.Resource
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
-import java.net.CacheRequest
 
 open class BaseRepository {
 
@@ -17,10 +16,10 @@ open class BaseRepository {
                 writeDataBase(it)
                 emit(Resource.Success(data = it))
             }
-        }catch (ioException: Exception){
+        } catch (ioException: Exception) {
             emit(
                 Resource.Error(
-                    data = null , message = ioException.localizedMessage ?: "Error"
+                    data = null, message = ioException.localizedMessage ?: "Error"
                 )
             )
         }

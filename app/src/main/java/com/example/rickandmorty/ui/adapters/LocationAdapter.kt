@@ -9,7 +9,7 @@ import com.example.rickandmorty.databinding.ItemLocationBinding
 import com.example.rickandmorty.models.RickAndMortyLocation
 
 class LocationAdapter :
-    ListAdapter<RickAndMortyLocation,LocationAdapter.LocationViewHolder>(
+    ListAdapter<RickAndMortyLocation, LocationAdapter.LocationViewHolder>(
         LocationComparator
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder =
@@ -28,7 +28,6 @@ class LocationAdapter :
     }
 
 
-
     class LocationViewHolder(private val binding: ItemLocationBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: RickAndMortyLocation) {
@@ -39,6 +38,7 @@ class LocationAdapter :
     }
 
 }
+
 object LocationComparator : DiffUtil.ItemCallback<RickAndMortyLocation>() {
     override fun areItemsTheSame(
         oldItem: RickAndMortyLocation,

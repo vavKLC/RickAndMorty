@@ -7,7 +7,7 @@ import com.example.rickandmorty.data.remote.apiservice.LocationApiService
 class LocationRepository constructor(
     private val service: LocationApiService,
     private val locationDao: LocationDao
-    ): BaseRepository() {
+) : BaseRepository() {
 
     fun fetchLocations(page: Int) = doRequest(
         { service.fetchLocations(page) },

@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:elevation="4dp"
-    android:padding="8dp"
     android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:padding="8dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="10dp"
-        android:backgroundTint="#3d3e43">
+        android:backgroundTint="#3d3e43"
+        app:cardCornerRadius="10dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:paddingStart="8dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingStart="8dp">
 
             <TextView
                 android:id="@+id/Episodes"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:text="Episodes"
+                android:textColor="@color/white"
                 android:textSize="22dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tv_episode"
                 android:layout_width="wrap_content"
@@ -37,8 +39,9 @@
                 android:text="Episode name:"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/Episodes"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Episodes" />
+
             <TextView
                 android:id="@+id/tv_episode_name"
                 android:layout_width="wrap_content"
@@ -98,8 +101,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_code"
                 tools:text="@tools:sample/lorem" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,6 @@ interface CharacterApiService {
 
     @GET("api/character")
     suspend fun fetchCharacters(
-        @Query("page") page : Int
+        @Query("page") page: Int
     ): RickAndMortyResponse<RickAndMortyCharacters>
 }

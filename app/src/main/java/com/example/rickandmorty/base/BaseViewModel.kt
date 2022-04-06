@@ -5,10 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.common.resource.Resource
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 
 abstract class BaseViewModel : ViewModel() {
@@ -18,11 +16,11 @@ abstract class BaseViewModel : ViewModel() {
     ) {
         viewModelScope.launch {
             collect {
-                when(it){
+                when (it) {
                     is Resource.Loading -> {
                     }
                     is Resource.Error -> {
-                        Log.e("error" , it.message.toString())
+                        Log.e("error", it.message.toString())
                     }
                     is Resource.Success -> {
                         addition?.let { addition() }

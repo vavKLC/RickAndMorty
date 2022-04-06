@@ -2,16 +2,16 @@ package com.example.rickandmorty.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Info (
-     @SerializedName("count")
-     val count : Int ,
+data class Info(
+    @SerializedName("count")
+    val count: Int,
 
-     @SerializedName("pages")
-     val pages : Int ,
+    @SerializedName("pages")
+    val pages: Int,
 
-     @SerializedName("next")
-     val next : String ,
+    @SerializedName("next")
+    val next: String,
 
-     @SerializedName("prev")
-     val prev : String
-         )
+    @SerializedName("prev")
+    val prev: String
+)

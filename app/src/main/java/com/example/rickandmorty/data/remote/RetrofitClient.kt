@@ -12,12 +12,12 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitClient {
 
-    private val okHttpClient : OkHttpClient = OkHttpClient
+    private val okHttpClient: OkHttpClient = OkHttpClient
         .Builder()
         .addInterceptor(provideLoggingInteceptor())
-        .connectTimeout(30 , TimeUnit.SECONDS)
-        .writeTimeout(30 , TimeUnit.SECONDS)
-        .readTimeout(30 , TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
         .build()
 
     private fun provideLoggingInteceptor() =
@@ -29,9 +29,9 @@ class RetrofitClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun provideCharacterApiService() = retrofit.create(CharacterApiService :: class.java)
+    fun provideCharacterApiService() = retrofit.create(CharacterApiService::class.java)
 
-    fun provideLocationApiService() = retrofit.create(LocationApiService :: class.java)
+    fun provideLocationApiService() = retrofit.create(LocationApiService::class.java)
 
-    fun provideEpisodesApiService() = retrofit.create(EpisodesApiService :: class.java)
+    fun provideEpisodesApiService() = retrofit.create(EpisodesApiService::class.java)
 }

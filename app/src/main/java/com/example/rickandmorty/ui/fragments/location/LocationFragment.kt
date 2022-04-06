@@ -14,7 +14,6 @@ import com.example.rickandmorty.utils.PaginationScrollListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-
 class LocationFragment
     : BaseFragment<FragmentLocationBinding, LocationViewModel>(
     R.layout.fragment_location
@@ -34,7 +33,7 @@ class LocationFragment
 
 
         addOnScrollListener(object : PaginationScrollListener(linearLayoutManager, {
-            if(isOnline()){
+            if (isOnline()) {
                 viewModel.fetchLocations()
             }
         }) {
@@ -44,11 +43,12 @@ class LocationFragment
 
     override fun setupRequests() {
         if (viewModel.locationState.value == null && isOnline()) viewModel.fetchLocations()
-        else    viewModel.getLocations()
+        else viewModel.getLocations()
     }
 
     private fun isOnline(): Boolean {
-        val cm = requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm =
+            requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val netInfo = cm.activeNetworkInfo
         return netInfo != null && netInfo.isConnectedOrConnecting
     }
@@ -59,7 +59,7 @@ class LocationFragment
     }
 
     private fun subscribeToLocaleLocation() {
-        viewModel.locationLocaleState.observe(viewLifecycleOwner){
+        viewModel.locationLocaleState.observe(viewLifecycleOwner) {
             locationAdapter.submitData(it)
         }
     }

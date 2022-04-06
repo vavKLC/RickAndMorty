@@ -10,9 +10,7 @@ import com.example.rickandmorty.models.RickAndMortyEpisodes
 import com.example.rickandmorty.models.RickAndMortyLocation
 
 @Database(
-    entities = [RickAndMortyCharacters::class
-        , RickAndMortyEpisodes::class
-        , RickAndMortyLocation::class],
+    entities = [RickAndMortyCharacters::class, RickAndMortyEpisodes::class, RickAndMortyLocation::class],
     version = 2
 )
 abstract class AppDataBase : RoomDatabase() {

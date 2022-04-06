@@ -8,11 +8,11 @@ import com.google.gson.annotations.SerializedName
 data class RickAndMortyCharacters(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
-    val id : Int ,
+    val id: Int,
 
     @SerializedName("name")
-    val name : String ,
+    val name: String,
 
     @SerializedName("image")
-    val image : String
+    val image: String
 )

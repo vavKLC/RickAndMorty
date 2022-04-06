@@ -10,8 +10,8 @@ import com.example.rickandmorty.models.RickAndMortyCharacters
 interface CharacterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCharacter(vararg users : RickAndMortyCharacters)
+    suspend fun insertCharacter(vararg users: RickAndMortyCharacters)
 
     @Query("SELECT * FROM rickandmortycharacters")
-    suspend fun getCharacter() : List<RickAndMortyCharacters>
+    suspend fun getCharacter(): List<RickAndMortyCharacters>
 }

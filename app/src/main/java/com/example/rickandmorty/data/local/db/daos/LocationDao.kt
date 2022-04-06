@@ -9,8 +9,8 @@ import com.example.rickandmorty.models.RickAndMortyLocation
 @Dao
 interface LocationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLocation(vararg users : RickAndMortyLocation)
+    suspend fun insertLocation(vararg users: RickAndMortyLocation)
 
     @Query("SELECT * FROM rickandmortylocation")
-    suspend fun getLocation() : List<RickAndMortyLocation>
+    suspend fun getLocation(): List<RickAndMortyLocation>
 }

@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName
 data class RickAndMortyLocation(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
-    val id : Int ,
+    val id: Int,
     @SerializedName("name")
-    val name : String ,
+    val name: String,
 
     @SerializedName("type")
-    val type : String
+    val type: String
 )

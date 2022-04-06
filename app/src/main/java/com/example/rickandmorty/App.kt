@@ -7,17 +7,16 @@ import com.example.rickandmorty.servicelocator.repositoryModule
 import com.example.rickandmorty.servicelocator.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.startKoin
 
 
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        startKoin{
+        startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(networkModule , repositoryModule , viewModelModule , appDataBaseModule)
+            modules(networkModule, repositoryModule, viewModelModule, appDataBaseModule)
         }
     }
 }

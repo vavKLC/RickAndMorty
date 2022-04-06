@@ -8,10 +8,10 @@ import com.example.rickandmorty.models.RickAndMortyLocation
 import com.example.rickandmorty.models.RickAndMortyResponse
 
 
-class LocationViewModel  constructor(private val repository: LocationRepository) :
+class LocationViewModel constructor(private val repository: LocationRepository) :
     BaseViewModel() {
     var page = 1
-    var isLoading : Boolean = false
+    var isLoading: Boolean = false
 
     private val _locationState = MutableLiveData<RickAndMortyResponse<RickAndMortyLocation>>()
     val locationState: LiveData<RickAndMortyResponse<RickAndMortyLocation>> = _locationState
@@ -21,7 +21,7 @@ class LocationViewModel  constructor(private val repository: LocationRepository)
 
     fun fetchLocations() {
         isLoading = true
-        repository.fetchLocations(page).collect(_locationState){
+        repository.fetchLocations(page).collect(_locationState) {
             page++
             isLoading = false
         }
