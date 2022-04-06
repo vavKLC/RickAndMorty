@@ -32,7 +32,9 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding, EpisodesViewModel
         adapter = episodesAdapter
 
         addOnScrollListener(object : PaginationScrollListener(linearLayoutManager, {
-            viewModel.fetchEpisodes()
+            if(isOnline()){
+                viewModel.fetchEpisodes()
+            }
         }) {
             override fun isLoading(): Boolean = viewModel.isLoading
         })

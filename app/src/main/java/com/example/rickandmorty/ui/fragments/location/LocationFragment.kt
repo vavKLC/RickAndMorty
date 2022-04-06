@@ -34,7 +34,9 @@ class LocationFragment
 
 
         addOnScrollListener(object : PaginationScrollListener(linearLayoutManager, {
-            viewModel.fetchLocations()
+            if(isOnline()){
+                viewModel.fetchLocations()
+            }
         }) {
             override fun isLoading(): Boolean = viewModel.isLoading
         })

@@ -30,8 +30,9 @@ class CharactersFragment :
         adapter = characterAdapter
 
         addOnScrollListener(object : PaginationScrollListener(linearLayoutManager, {
-            if(isOnline()) viewModel.fetchCharacters()
-            viewModel.fetchCharacters()
+            if(isOnline()){
+                viewModel.fetchCharacters()
+            }
         }) {
             override fun isLoading(): Boolean = viewModel.isLoading
         })
